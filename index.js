@@ -1,129 +1,128 @@
 // Created by @musfiqurjahin
 
-function createAnimatedPopup() {
-  // Main popup container
-  const animatedPopup = document.createElement('div');
-  animatedPopup.style.position = 'fixed';
-  animatedPopup.style.top = '50%'; // Center vertically
-  animatedPopup.style.left = '50%'; // Center horizontally
-  animatedPopup.style.transform = 'translate(-50%, -50%)'; // Perfect centering
-  animatedPopup.style.background = 'linear-gradient(135deg, #1a1a2e, #16213e)';
-  animatedPopup.style.color = '#3bfc00';
-  animatedPopup.style.padding = '30px 40px';
-  animatedPopup.style.borderRadius = '12px';
-  animatedPopup.style.boxShadow = '0 8px 30px rgba(0, 255, 0, 0.5)';
-  animatedPopup.style.textAlign = 'center';
-  animatedPopup.style.zIndex = '9999';
-  animatedPopup.style.maxWidth = '400px';
-  animatedPopup.style.width = '90%';
-  animatedPopup.style.animation = 'slideIn 0.8s ease-out';
-
-  // Close button setup
-  const closeButton = document.createElement('button');
-  closeButton.style.position = 'absolute';
-  closeButton.style.top = '10px';
-  closeButton.style.right = '10px';
-  closeButton.style.background = 'transparent';
-  closeButton.style.color = '#3bfc00';
-  closeButton.style.border = 'none';
-  closeButton.style.fontSize = '20px';
-  closeButton.style.cursor = 'pointer';
-  closeButton.style.transition = 'color 0.3s ease';
-
-  // Hover effect for close button
-  closeButton.onmouseover = () => {
-      closeButton.style.color = '#ff0033';
-  };
-  closeButton.onmouseout = () => {
-      closeButton.style.color = '#3bfc00';
-  };
-
-  // Close button icon
-  const closeIcon = document.createElement('i');
-  closeIcon.className = 'fas fa-times'; // FontAwesome close icon
-  closeButton.appendChild(closeIcon);
-  closeButton.onclick = () => {
-      document.body.removeChild(animatedPopup); // Remove popup when clicked
-  };
-  animatedPopup.appendChild(closeButton);
-
-  // Header text
-  const headerText = document.createElement('h2');
-  headerText.textContent = 'Fetching Your IP Address';
-  headerText.style.marginBottom = '15px';
-  headerText.style.fontSize = '18px';
-  headerText.style.fontWeight = 'bold';
-  headerText.style.color = '#3bfc00';
-  headerText.style.textShadow = '0 0 10px #3bfc00';
-  animatedPopup.appendChild(headerText);
-
-  // Message element for loading state
-  const loadingText = document.createElement('div');
-  loadingText.style.display = 'flex';
-  loadingText.style.justifyContent = 'center';
-  loadingText.style.alignItems = 'center';
-  loadingText.style.marginBottom = '10px';
-
-  // Loading spinner icon
-  const loadingSpinner = document.createElement('i');
-  loadingSpinner.className = 'fas fa-spinner fa-pulse'; // Spinning animation
-  loadingSpinner.style.marginRight = '8px'; // Space between icon and text
-  loadingSpinner.style.color = '#3bfc00'; // Icon color
-  loadingText.appendChild(loadingSpinner);
-
-  // Loading text
-  const loadingMsg = document.createTextNode('Please wait...');
-  loadingText.appendChild(loadingMsg);
-  animatedPopup.appendChild(loadingText);
-
-  // Append the popup to the body
-  document.body.appendChild(animatedPopup);
-
-  // Fetch IP address and update the message
-  setTimeout(() => {
+function createPopup() {
+    //popup container:
+    const popup = document.createElement('div');
+    popup.style.position = 'fixed';
+    popup.style.top = '0'; // Display the popup at the top
+    popup.style.left = '50%';
+    popup.style.transform = 'translateX(-50%)'; // Center horizontally
+    popup.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    popup.style.color = 'red';
+    popup.style.padding = '20px';
+    popup.style.fontSize = '16px';
+    popup.style.textAlign = 'center';
+    popup.style.zIndex = '9999';
+    popup.style.width = '100%';
+  
+    //fade-in animation for the popup:
+    popup.style.animation = 'fadeIn 1s ease-out';
+  
+    //message element for loader:
+    const message = document.createElement('span');
+    message.style.opacity = '0';
+    message.style.animation = 'fadeIn 2s forwards'; // Apply only fade-in animation
+  
+    //loading icon:
+    const loadingIcon = document.createElement('i');
+    loadingIcon.className = 'fas fa-spinner fa-pulse'; // Spinning animation
+    loadingIcon.style.marginRight = '8px'; // Space between icon and text
+    loadingIcon.style.color = 'red'; //icon Color
+    message.appendChild(loadingIcon);
+  
+    //loading text:
+    const loadingText = document.createTextNode('Obtaining IP...');
+    message.appendChild(loadingText);
+    popup.appendChild(message);
+  
+    //LogOut icon:
+    const logoutBtn = document.createElement('button');
+    logoutBtn.style.position = 'absolute';
+    logoutBtn.style.top = '12px';
+    logoutBtn.style.alignContent = 'center';
+    logoutBtn.style.alignItems = 'center';
+    logoutBtn.style.right = '10px';
+    logoutBtn.style.fontSize = '20px';
+    logoutBtn.style.backgroundColor = 'transparent';
+    logoutBtn.style.color = 'red';
+    logoutBtn.style.border = 'none';
+    logoutBtn.style.borderRadius = '0';
+    logoutBtn.style.cursor = 'pointer';
+    logoutBtn.style.padding = '5px';
+  
+    //ICON:
+    const logoutIcon = document.createElement('i');
+    logoutIcon.className = 'fas fa-sign-out-alt'; // FontAwesome logout icon
+    logoutBtn.appendChild(logoutIcon);
+  
+    // Hover eFFect in Hover:
+    logoutBtn.onmouseover = () => {
+      logoutIcon.style.color = 'green';
+      logoutIcon.style.transform = 'scale(1.2)';
+      logoutIcon.style.transition = 'transform 0.3s ease';
+    };
+    logoutBtn.onmouseout = () => {
+      logoutIcon.style.transform = 'scale(1)';
+      logoutIcon.style.color = 'red';
+    };
+  
+    // Logout button action
+    logoutBtn.onclick = () => {
+      document.body.removeChild(popup); // Remove popup when clicked
+    };
+    popup.appendChild(logoutBtn);
+  
+    // Append the popup to the body
+    document.body.appendChild(popup);
+  
+    // Fetch IP address and update the message after the animation
+    setTimeout(() => {
       fetch('https://api.ipify.org?format=json')
-          .then(response => response.json())
-          .then(data => {
-              // Clear initial loading text
-              loadingText.textContent = ''; // Clear the "Please wait..." text
-
-              // Display IP address
-              const ipText = document.createElement('p');
-              ipText.textContent = `Your IP Address: ${data.ip}`;
-              ipText.style.fontSize = '16px';
-              ipText.style.color = '#3bfc00';
-              ipText.style.textShadow = '0 0 5px #3bfc00';
-              animatedPopup.appendChild(ipText);
-          })
-          .catch(error => {
-              console.error("Error fetching IP address:", error);
-              loadingText.textContent = 'Unable to fetch IP address'; // Handle error
-          });
-  }, 2000); // Delay for 2 seconds before fetching the IP
-
-  // Auto-hide popup after 7 seconds
-  setTimeout(() => {
-      if (document.body.contains(animatedPopup)) {
-          document.body.removeChild(animatedPopup);
-      }
-  }, 7000);
-}
-
-// Add CSS for animations and futuristic effects
-const popupStyles = document.createElement('style');
-popupStyles.innerHTML = `
-  @keyframes slideIn {
+        .then(response => response.json())
+        .then(data => {
+          // Clear initial loading icon and text
+          message.textContent = ''; // Clear the "Obtaining IP..." text
+  
+          // Add icon and IP address text
+          const ipIcon = document.createElement('i');
+          ipIcon.className = 'fas fa-map-marker-alt'; // Icon for IP display
+          ipIcon.style.marginRight = '8px'; // Space between icon and IP text
+          ipIcon.style.color = 'red'; // Color for IP icon
+          message.appendChild(ipIcon);
+  
+          //IP address text
+          message.appendChild(document.createTextNode(`${data.ip}`)); //IP: ${data.ip}
+          message.style.opacity = '1'; // Ensure the IP text fades in smoothly
+          message.style.animation = 'fadeIn 2s forwards';
+        })
+        .catch(error => {
+          console.error("Error fetching IP address:", error);
+          message.textContent = 'Failed to get IP address'; // Handle error
+        });
+    }, 3000); // DeLay for 3 sec before showing the IP
+  }
+  
+  // Add CSS for fade-in animation and blinking effect
+  const style = document.createElement('style');
+  style.innerHTML = `
+    @keyframes fadeIn {
       from {
-          opacity: 0;
-          transform: translate(-50%, -70%);
+        opacity: 0;
       }
       to {
-          opacity: 1;
-          transform: translate(-50%, -50%);
+        opacity: 1;
       }
-  }
-`;
-document.head.appendChild(popupStyles);
-
-// Call the function to create the popup
-createAnimatedPopup();
+    }
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
+  `;
+  // Fade in Animation:
+  // message.style.animation = 'fadeIn 2s forwards, blink 1s step-start 0s 3';
+  document.head.appendChild(style);
+  
+  // Call the function to create the popup
+  createPopup();
+  
